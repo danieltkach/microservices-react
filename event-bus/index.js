@@ -17,15 +17,17 @@ app.post('/events', (req, res) => {
 
   events.push(event);
 
-  axios.post(COMMENTS_SERVICE, event);
-  axios.post(POSTS_SERVICE, event);
-  axios.post(QUERY_SERVICE, event);
-  axios.post(MODERATION_SERVICE, event);
+  axios.post(COMMENTS_SERVICE, event).catch((e) => console.log(e.message));
+  axios.post(POSTS_SERVICE, event).catch((e) => console.log(e.message));
+  axios.post(QUERY_SERVICE, event).catch((e) => console.log(e.message));
+  axios.post(MODERATION_SERVICE, event).catch((e) => console.log(e.message));
+
+  console.log('Even created:', event);
 
   res.send({ status: 'OK' });
 });
 
-app.get('/', (req, res) => {
+app.get('/events', (req, res) => {
   res.send(events);
 });
 
