@@ -20,7 +20,7 @@ const handleEvent = (type, data) => {
     const { id, content, postId, status } = data;
 
     const post = posts[postId];
-    post.comments.push({ id, content, status });
+    post?.comments.push({ id, content, status });
   }
 
   if (type === 'CommentUpdated') {
